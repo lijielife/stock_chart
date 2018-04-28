@@ -1,78 +1,72 @@
+#!/usr/local/bin/python3
+
 import pandas as pd
 
 import plotly.offline as offline
 import plotly.graph_objs as go
 
 
-def get_stock_list():
-    stock_list = {
-            "KODEX 200"                : "069500",
-            "KINDEX 중국본토 CSI300"   : "168580",
-            "TIGER 미국다우존스30"     : "245340",
-            "TIGER 유로스탁스50"       : "195930",
-            "TIGER 일본TOPIX"          : "195920",
-            "TIGER 미국S&P500선물"     : "143850",
-            "KINDEX 인도네시아MSCI"    : "256440",
-            "TIGER 라틴35"             : "105010", 
+def get_stock_list(): 
+    stock_list_v1 = {
+            "KODEX 200"                   : "069500",  ## Basis
+            "TIGER 미국나스닥바이오"      : "203780",  ## Best
+            "KINDEX 인도네시아MSCI"       : "256440",  ## Best
+            "KINDEX 중국본토 CSI300"      : "168580",  ## Good
+            "TIGER 유로스탁스50"          : "195930",  ## Good
+            "TIGER 일본TOPIX"             : "195920",  ## Good
+            "KINDEX 필리핀MSCI"           : "261920",  ## Good
+##          "TIGER 미국S&P500선물"        : "143850",  ## Bad
+##          "TIGER 라틴35"                : "105010",  ## Bad
+##          "KODEX 선진국MSCI World"      : "251350",  ## Bad
+##          "KINDEX 베트남VN30"           : "245710",  ## Bad
+##          "KINDEX S&P아시아TOP50"       : "277540",  ## Bad
+##          "TIGER 미국나스닥100"         : "133690",  ## Bad
+##          "TIGER 대만TAIEX선물"         : "253990",  ## Bad
+##          "TIGER 미국다우존스30"        : "245340",  ## Worst 
             }
-    return stock_list
 
+    stock_list_v2 = {
+            "KODEX 200"                   : "069500", 
+            "TIGER 200 생활소비재"        : "227560",  ## Best
+            "KODEX 운송"                  : "140710",  ## Best
+            "KODEX 증권"                  : "102970",  ## Best
+            "KODEX 건설"                  : "117700",  ## Best
+            "TIGER 중국소비테마"          : "150460",  ## Best
+            "TIGER 경기방어"              : "139280",  ## Best
+            "KODEX 기계장비"              : "102960",  ## Best
+            "KODEX 보험"                  : "140700",  ## Good
+            "KOSEF 저PBR가중"             : "260270",  ## Good
+            "KBSTAR 수출주"               : "140570",  ## Good
+            "KINDEX 한류"                 : "226380",  ## Good
+            "TIGER 200 중공업"            : "139230",  ## Good
+            "KODEX 자동차"                : "091180",  ## Good
+            "KODEX 철강"                  : "117680",  ## Good 
+            "TIGER 200 헬스케어"          : "227540",  ## Good
+            "TIGER 화장품"                : "228790",  ## Good
+##          "KODEX 은행"                  : "091170",  ## Bad
+##          "KODEX 경기소비재"            : "266390",  ## Bad
+##          "KODEX 반도체"                : "091160",  ## Bad
+##          "KODEX 모멘텀Plus"            : "244620",  ## Bad
+##          "KODEX IT소프트웨어"          : "266360",  ## Bad
+##          "KODEX 퀄리티Plus"            : "244660",  ## Bad
+##          "TIGER 배당성장"              : "211560",  ## Bad
+##          "TIGER 여행레저"              : "228800",  ## Bad
+##          "TIGER 가격조정"              : "217790",  ## Bad
+##          "TIGER 모멘텀"                : "147970",  ## Bad
+##          "KODEX 바이오"                : "244580",  ## Bad 
+##          "TIGER 200 IT"                : "139260",  ## Worst
+##          "TIGER 200IT레버리지"         : "243880",  ## Worst
+##          "KODEX 에너지화학"            : "117460",  ## Worst
+##          "TIGER 200에너지화학레버리지" : "243890",  ## Worst 
+            } 
 
-''' 
+##          "TIGER 인도니프티50레버리지"  : "236350",  ## 청산 진행 중 (매수 안 됨)
+##          "KINDEX 스마트밸류"           : "272230",  ## Kodex 200과 비슷하다
+##          "TIGER 코스피중형주"          : "277650",  ## Kodex 200과 같음
+##          "ARIRANG 고배당주"            : "161510",  ## Kodex 200과 같음
+##          "TIGER 베타플러스"            : "170350",  ## Kodex 200과 같음 
 
-            "KODEX 선진국MSCI World"   : "251350",
-            "KINDEX 베트남VN30"        : "245710",
-            "KINDEX S&P아시아TOP50"    : "277540",
-            "TIGER 미국나스닥100"      : "133690",
-            "TIGER 인도니프티50레버리지" : "236350",
-            "TIGER 대만TAIEX선물"      : "253990",
-            "TIGER 미국나스닥바이오"   : "203780",
-            "KINDEX 필리핀MSCI"        : "261920",
-
-
-
-            "KODEX 은행"               : "091170",
-            "KODEX 증권"               : "102970",
-            "TIGER 200 헬스케어"       : "227540", 
-            "TIGER 코스피중형주"       : "277650",
-            "TIGER 화장품"             : "228790",
-            "KODEX 경기소비재"         : "266390",
-            "KODEX 에너지화학"         : "117460",
-            "TIGER 200에너지화학레버리지" : "243890",
-            "KODEX 반도체"             : "091160",
-            "TIGER 200 생활소비재"     : "227560",
-            "TIGER 200 IT"             : "139260",
-            "TIGER 200IT레버리지"      : "243880",
-            "KODEX 모멘텀Plus"         : "244620",
-            "KODEX IT소프트웨어"       : "266360",
-            "KODEX 퀄리티Plus"         : "244660",
-            "TIGER 배당성장"           : "211560",
-            "KODEX 운송"               : "140710",
-            "ARIRANG 고배당주"         : "161510",
-            "TIGER 베타플러스"         : "170350",
-            "KINDEX 스마트밸류"        : "272230",
-            "KODEX 건설"               : "117700",
-            "TIGER 여행레저"           : "228800",
-            "TIGER 가격조정"           : "217790",
-            "TIGER 모멘텀"             : "147970",
-            "KODEX 바이오"             : "244580",
-            "KOSEF 저PBR가중"          : "260270",
-            "KBSTAR 수출주"            : "140570", 
-
-            "TIGER 중국소비테마"       : "150460",
-            "KODEX 자동차"             : "091180",
-            "TIGER 200 중공업"         : "139230",
-            "KODEX 기계장비"           : "102960",
-            "KODEX 철강"               : "117680",
-            "TIGER 경기방어"           : "139280",
-            "KODEX 보험"               : "140700",
-            "KINDEX 한류"              : "226380",
-'''
-
-''' 
-'''
-
-
+    return stock_list_v2 
 
 
 def get_stock_price(stock_list, stock_name):
