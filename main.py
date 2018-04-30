@@ -9,12 +9,12 @@ import plotly.graph_objs as go
 def get_stock_list(): 
     stock_list_v1 = {
             "KODEX 200"                   : "069500",  ## Basis
-            "TIGER 미국나스닥바이오"      : "203780",  ## Best
-            "KINDEX 인도네시아MSCI"       : "256440",  ## Best
-            "KINDEX 중국본토 CSI300"      : "168580",  ## Good
+            "TIGER 미국나스닥바이오"      : "203780",  ## Best 2018.04.28
+            "KINDEX 인도네시아MSCI"       : "256440",  ## Best 2018.04.28
+            "KINDEX 필리핀MSCI"           : "261920",  ## Best 2018.04.28
+            "KINDEX 중국본토 CSI300"      : "168580",  ## Good 
             "TIGER 유로스탁스50"          : "195930",  ## Good
             "TIGER 일본TOPIX"             : "195920",  ## Good
-            "KINDEX 필리핀MSCI"           : "261920",  ## Good
 ##          "TIGER 미국S&P500선물"        : "143850",  ## Bad
 ##          "TIGER 라틴35"                : "105010",  ## Bad
 ##          "KODEX 선진국MSCI World"      : "251350",  ## Bad
@@ -27,19 +27,19 @@ def get_stock_list():
 
     stock_list_v2 = {
             "KODEX 200"                   : "069500", 
-            "TIGER 200 생활소비재"        : "227560",  ## Best
-            "KODEX 운송"                  : "140710",  ## Best
+            "TIGER 200 생활소비재"        : "227560",  ## Best 2018.04.28
+            "KODEX 운송"                  : "140710",  ## Best 2018.04.28
             "KODEX 증권"                  : "102970",  ## Best
             "KODEX 건설"                  : "117700",  ## Best
             "TIGER 중국소비테마"          : "150460",  ## Best
-            "TIGER 경기방어"              : "139280",  ## Best
-            "KODEX 기계장비"              : "102960",  ## Best
-            "KODEX 보험"                  : "140700",  ## Good
+            "TIGER 경기방어"              : "139280",  ## Best 2018.04.28
+            "KODEX 기계장비"              : "102960",  ## Best 2018.04.28
+            "KODEX 보험"                  : "140700",  ## Good 2018.04.28
             "KOSEF 저PBR가중"             : "260270",  ## Good
             "KBSTAR 수출주"               : "140570",  ## Good
             "KINDEX 한류"                 : "226380",  ## Good
-            "TIGER 200 중공업"            : "139230",  ## Good
-            "KODEX 자동차"                : "091180",  ## Good
+            "TIGER 200 중공업"            : "139230",  ## Good 2018.04.28
+            "KODEX 자동차"                : "091180",  ## Good 2018.04.28
             "KODEX 철강"                  : "117680",  ## Good 
             "TIGER 200 헬스케어"          : "227540",  ## Good
             "TIGER 화장품"                : "228790",  ## Good
@@ -60,13 +60,13 @@ def get_stock_list():
 ##          "TIGER 200에너지화학레버리지" : "243890",  ## Worst 
             } 
 
-##          "TIGER 인도니프티50레버리지"  : "236350",  ## 청산 진행 중 (매수 안 됨)
 ##          "KINDEX 스마트밸류"           : "272230",  ## Kodex 200과 비슷하다
 ##          "TIGER 코스피중형주"          : "277650",  ## Kodex 200과 같음
 ##          "ARIRANG 고배당주"            : "161510",  ## Kodex 200과 같음
 ##          "TIGER 베타플러스"            : "170350",  ## Kodex 200과 같음 
+##          "TIGER 인도니프티50레버리지"  : "236350",  ## 청산 진행 중 (매수 안 됨)
 
-    return stock_list_v2 
+    return stock_list_v1 
 
 
 def get_stock_price(stock_list, stock_name):
